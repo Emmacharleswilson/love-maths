@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     for (let button of buttons) {
         button.addEventListener("click", function() {
+            console.log(this.getAttribute("data-type"))
             if (this.getAttribute("data-type") === "submit") {
                 checkAnswer();
 
@@ -11,18 +12,19 @@ document.addEventListener("DOMContentLoaded", function() {
                 let gameType = this.getAttribute("data-type");
                 runGame(gameType);
             }
-        })
+        });
     }
 
     runGame("addition");
-})
+});
 
 /**
  * The main game "loop", called when the script is first loaded
  * and after the user's answer has been processed
  */
 
-function runGame (gameType) {
+function runGame(gameType) {
+
     let num1 = Math.floor(Math.random() * 25) + 1;
     let num2 = Math.floor(Math.random() * 25) + 1;
 
@@ -33,6 +35,7 @@ function runGame (gameType) {
         throw `Unknown game type: ${gameType}. Aborting!`;
     }
 }
+
 
 /**
  * Checks the answer against the first element in
@@ -52,6 +55,7 @@ function checkAnswer () {
     }
 
     runGame(calculatedAnswer[1]);
+    console.log('Made it to check answer!');
 
 }
 
